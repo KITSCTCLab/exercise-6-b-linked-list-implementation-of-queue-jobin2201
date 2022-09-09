@@ -10,28 +10,25 @@ class Queue:
     self.last = None
 
   def enqueue(self, data) -> None:
-    if self.last is None:
-      self.head = Node(data)
-      self.last = self.head
-    else:
-      self.last.next = Node(data)
-      self.last = self.last.next
-
+        new = Node(data)
+        if self.last is not None:
+            self.last.next = new
+        if self.head is None:
+            self.head = new
+        self.last = new
 
   def dequeue(self) -> None:
-    if self.head is None:
-      return None
-    else:
-      val_returned = self.head.data
-      self.head = self.head.next
-      return val_returned
+        if not self.head is None:
+            self.head = self.head.next
+            if self.head is None:
+              self.last = None
 
   def status(self) -> None:
-    while True:
-      print('enqueue <value>')
-      print('dequeue')
-      print('quit')
-      input_data = input('What operation would you like to perform ? ').split()
+        current = self.head
+        while current is not None:
+          print(current.data, end = "=>")
+          current = current.next
+        print("None")
 
 
 # Do not change the following code
